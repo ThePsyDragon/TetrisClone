@@ -17,4 +17,6 @@ public class Tiles {
 	//Global Variables
 	  //Array of all Tiles; X,Y
 	  Tiles[][] Tiles = new Tiles[10][20];
+	  //Enumeration of Tile Types
+	  public static int empty = 1;
 }
