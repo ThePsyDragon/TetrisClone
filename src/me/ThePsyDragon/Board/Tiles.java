@@ -17,7 +17,7 @@ Description:
       - getType()
  */
 public class Tiles extends GameObject{
-	//Global Variables
+		//Global Variables
 	  //Static
 	    //Public
 	      //Array of all Tiles; X,Y
@@ -42,4 +42,9 @@ public class Tiles extends GameObject{
 	      private static String EmptyTex = "";
 	  //Non-Static
 	    //Private
+	      
+	  //Constructor
+	    public Tiles(int tlcorner, int trcorner, int blcorner, int brcorner, String texture) {
+	  		super(tlcorner, trcorner, blcorner, brcorner, texture);
+	  	}
 }

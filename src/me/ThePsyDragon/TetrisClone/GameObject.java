@@ -11,10 +11,12 @@ package me.ThePsyDragon.TetrisClone;
  */
 public class GameObject {
 	//Global Variables
+	//Quad Corners
 	private int TLCorner = 0;
 	private int TRCorner = 0;
 	private int BLCorner = 0;
 	private int BRCorner = 0;
+	//Object Texture
 	private String Texture = "";
 	
 	//Constructor
