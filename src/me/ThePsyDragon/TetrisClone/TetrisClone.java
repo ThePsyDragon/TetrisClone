@@ -16,7 +16,7 @@ public class TetrisClone {
 	double currentTPS = 0;
 	double averageTPS = 0;
 	boolean debug = true;
-	boolean TPSRestrict = false;
+	boolean TPSRestrict = true;
 
 	public static void main(String[] args) {
 		// Variables
@@ -24,7 +24,7 @@ public class TetrisClone {
 		TetrisClone tc = new TetrisClone();
 		tc.Start();
 	}
-
+	
 	public void Start() {
 		// Start Function
 		// Initialize
@@ -38,22 +38,23 @@ public class TetrisClone {
 		// Begin Loop
 		long tpsTimer2 = 0;
 		long tpsTimer = System.currentTimeMillis();
+		long tickTimer = System.currentTimeMillis();
 		while (!Display.isCloseRequested()) {
-			long tickTimer = System.currentTimeMillis();
-
-			// Update Screen
-			Display.update();
+			//Check TPS
 			if (TPSRestrict) {
 				while (System.currentTimeMillis() - tickTimer < tickLength) {
 					// Pause till tick is completed
 				}
 			}
+			tickTimer = System.currentTimeMillis();
 			// Calculate tps
 			tpsTimer2 = System.currentTimeMillis();
 			tpsCounter += 1;
 			this.print("TPS Counter: " + tpsCounter);
 			if (tpsTimer2 - tpsTimer > 1000) {
-				currentTPS = ((tpsCounter / (tpsTimer2 - tpsTimer))) * 1000;
+				double difference = (double) (tpsTimer2 - tpsTimer);
+				this.print("" + difference);
+				currentTPS = (tpsCounter / difference) * 1000;
 				this.print("Current TPS: " + currentTPS);
 				tpsCounter = 0;
 				totalTPSCounter += 1;
@@ -61,10 +62,14 @@ public class TetrisClone {
 						/ totalTPSCounter;
 				tpsTimer = System.currentTimeMillis();
 			}
+			// Update Positions
+			// Render
+			// Update Screen
+			Display.update();
 		}
 		// Clean up
 		// Debug Info
-		this.print("Average TPS: " + averageTPS);
+		System.out.println("Average TPS: " + averageTPS);
 		this.print("Total TPS Counter: " + totalTPSCounter);
 		// Exit
 	}
