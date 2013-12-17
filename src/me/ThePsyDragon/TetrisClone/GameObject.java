@@ -1,6 +1,7 @@
 package me.ThePsyDragon.TetrisClone;
 
-import org.lwjgl.opengl.GL11.*;
+import me.ThePsyDragon.Board.Position;
+
 /*
  * Description:
  *   Base class for all rendered objects in the program.
@@ -29,16 +30,16 @@ public class GameObject {
 	public static int Low_Priority = 40;
 	public static int Final_Priority = 50;
 	//Quad Corners
-	private int TLCorner = 0;
-	private int TRCorner = 0;
-	private int BLCorner = 0;
-	private int BRCorner = 0;
+	private Position TLCorner;
+	private Position TRCorner;
+	private Position BLCorner;
+	private Position BRCorner;
 	//Object Texture
 	private String Texture = "";
 	//Priority
 	private int Priority;
 	//Constructor
-	public GameObject(int tlcorner, int trcorner, int blcorner, int brcorner, int priority, String texture){
+	public GameObject(Position tlcorner, Position trcorner, Position blcorner, Position brcorner, int priority, String texture){
 		TLCorner = tlcorner;
 		TRCorner = trcorner;
 		BRCorner = brcorner;
@@ -49,7 +50,6 @@ public class GameObject {
 	
 	//Draw
 	public void Draw(){
-		//glBegin(GL_QUADS);
 		
 	}
 	
@@ -59,33 +59,41 @@ public class GameObject {
 	}
 	
 	//getCorners
-	public int getTLCorner(){
+	public Position getTLCorner(){
 		return TLCorner;
 	}
-	public int getTRCorner(){
+	public Position getTRCorner(){
 		return TRCorner;
 	}
-	public int getBLCorner(){
+	public Position getBLCorner(){
 		return BLCorner;
 	}
-	public int getBRCorner(){
+	public Position getBRCorner(){
 		return BRCorner;
 	}
 	//setCorners
-	public void setTLCorner(int tlcorner){
+	public void setTLCorner(Position tlcorner){
 		 TLCorner = tlcorner;
 	}
-	public void setTRCorner(int trcorner){
+	public void setTRCorner(Position trcorner){
 		TRCorner = trcorner;
 	}
-	public void setBLCorner(int blcorner){
+	public void setBLCorner(Position blcorner){
 		BLCorner = blcorner;
 	}
-	public void setBRCorner(int brcorner){
+	public void setBRCorner(Position brcorner){
 		BRCorner = brcorner;
 	}
 	//setPriority
 	public void setPriority(int priority){
 		Priority = priority;
+	}
+	//getTextures
+	public String getTexture(){
+		return Texture;
+	}
+	//setTextures
+	public void setTexture(String texture){
+		Texture = texture;
 	}
 }
