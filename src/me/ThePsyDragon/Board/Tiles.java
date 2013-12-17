@@ -40,11 +40,30 @@ public class Tiles extends GameObject{
 	      private static String JBlockTex = "";
 	      private static String LBlockTex = "";
 	      private static String EmptyTex = "";
+	      //Render Control
+	      public static boolean RenderTiles = false;
 	  //Non-Static
 	    //Private
 	      
 	  //Constructor
-	    public Tiles(int tlcorner, int trcorner, int blcorner, int brcorner, String texture) {
-	  		super(tlcorner, trcorner, blcorner, brcorner, texture);
+	    public Tiles(int tlcorner, int trcorner, int blcorner, int brcorner, int priority, String texture) {
+	  		super(tlcorner, trcorner, blcorner, brcorner, priority, texture);
 	  	}
+	    
+	  //Draw All Tiles
+	    public static void DrawAll(){
+	    	for(int i = 0; i<10;i++){
+	    		for(int k = 0; k<20;k++){
+	    			Tiles[i][k].Draw();
+	    		}
+	    	}
+	    }
+	  //Initialize
+	    public static void Initialize(){
+	    	for(int i = 0; i<10;i++){
+	    		for(int k = 0; k<20;k++){
+	    			//Tiles[i][k] = new Tiles(tlcorner,trcorner,blcorner,brcorner,priority,texture);
+	    		}
+	    	}
+	    }
 }
