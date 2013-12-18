@@ -32,14 +32,14 @@ public class Tiles extends GameObject{
 	      public static int JBlock = 7;
 	      public static int LBlock = 8;
 	      //Block Textures
-	      private static String OBlockTex = "";
-	      private static String TBlockTex = "";
-	      private static String SBlockTex = "";
-	      private static String ZBlockTex = "";
-	      private static String IBlockTex = "";
-	      private static String JBlockTex = "";
-	      private static String LBlockTex = "";
-	      private static String EmptyTex = "";
+	      private static String OBlockTex = "OBlock";
+	      private static String TBlockTex = "TBlock";
+	      private static String SBlockTex = "SBlock";
+	      private static String ZBlockTex = "ZBlock";
+	      private static String IBlockTex = "IBlock";
+	      private static String JBlockTex = "JBlock";
+	      private static String LBlockTex = "LBlock";
+	      private static String EmptyTex = "EmptyBlock";
 	      //Render Control
 	      public static boolean RenderTiles = false;
 	  //Non-Static

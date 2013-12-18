@@ -13,7 +13,7 @@ import org.lwjgl.opengl.*;
 
 /*Description:
  *    Main Class: Starting point for program.
- *      Houses 
+ *      Houses main loop
  */
 
 public class TetrisClone {
@@ -24,7 +24,7 @@ public class TetrisClone {
 	long totalTPSCounter = 0;
 	double currentTPS = 0;
 	double averageTPS = 0;
-	boolean debug = false;
+	boolean debug = true;
 	boolean TPSRestrict = true;
 	//List of all Rendered Objects
 	List<GameObject> RendObjList = new LinkedList<GameObject>();
@@ -52,6 +52,7 @@ public class TetrisClone {
 		glLoadIdentity();
 		glOrtho(0, 720, 0, 720, 1, -1);
 		glMatrixMode(GL_MODELVIEW);
+		glEnable(GL11.GL_TEXTURE_2D);
 		// Begin Loop
 		long tpsTimer2 = 0;
 		long tpsTimer = System.currentTimeMillis();

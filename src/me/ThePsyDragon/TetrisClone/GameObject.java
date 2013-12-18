@@ -1,6 +1,11 @@
 package me.ThePsyDragon.TetrisClone;
 
+import java.io.IOException;
+
 import me.ThePsyDragon.Board.Position;
+
+import org.newdawn.slick.opengl.*;
+import org.newdawn.slick.util.ResourceLoader;
 
 /*
  * Description:
@@ -35,7 +40,8 @@ public class GameObject {
 	private Position BLCorner;
 	private Position BRCorner;
 	//Object Texture
-	private String Texture = "";
+	
+	private Texture Texture;
 	//Priority
 	private int Priority;
 	//Constructor
@@ -45,7 +51,12 @@ public class GameObject {
 		BRCorner = brcorner;
 		BLCorner = blcorner;
 		Priority = priority;
-		Texture = texture;
+		try {
+			Texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/" + texture));
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
 	}
 	
 	//Draw
