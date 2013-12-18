@@ -77,15 +77,15 @@ public class GameObject {
 		//Top Left
 		GL11.glTexCoord2f(0, 0);
 		GL11.glVertex2i(TLCorner.getX(), TLCorner.getY());
-		//Bottom Left
-		GL11.glTexCoord2f(0, 1);
-		GL11.glVertex2i(BLCorner.getX(), BLCorner.getY());
-		//Bottom Right
-		GL11.glTexCoord2f(1,1);
-		GL11.glVertex2i(BRCorner.getX(), BRCorner.getY());
 		//Top Right
 		GL11.glTexCoord2f(1, 0);
 		GL11.glVertex2i(TRCorner.getX(), TRCorner.getY());
+		//Bottom Right
+		GL11.glTexCoord2f(1,1);
+		GL11.glVertex2i(BRCorner.getX(), BRCorner.getY());
+		//Bottom Left
+		GL11.glTexCoord2f(0, 1);
+		GL11.glVertex2i(BLCorner.getX(), BLCorner.getY());
 		GL11.glEnd();
 	}
 

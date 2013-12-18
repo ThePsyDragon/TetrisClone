@@ -101,8 +101,8 @@ public class TetrisClone {
 			tpsTimer = System.currentTimeMillis();
 		}
 	}
-	
-	public void openGLInit(){
+
+	public void openGLInit() {
 		try {
 			Display.setDisplayMode(new DisplayMode(720, 720));
 			Display.create();
@@ -118,20 +118,22 @@ public class TetrisClone {
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL11.GL_TEXTURE_2D);
 	}
-	
-	public void render(){
+
+	public void render() {
 		for (int i = 0; i < RendObjList.size(); i++) {
-			GameObject.BoundTexture = RendObjList.get(i).getTexture();
+			if (GameObject.BoundTexture == null || !GameObject.BoundTexture
+					.equals(RendObjList.get(i).getTexture())) {
+				GameObject.BoundTexture = RendObjList.get(i).getTexture();
+			}
 			RendObjList.get(i).Draw();
 			System.out.println("Debug: Called Draw");
-			
 		}
 		if (Tiles.RenderTiles) {
 			Tiles.DrawAll();
 		}
 	}
-	
-	public void init(){
+
+	public void init() {
 		GameObject.AbsoluteFilePath = new File("").getAbsolutePath();
 		RendObjList.add(new GameField());
 	}
