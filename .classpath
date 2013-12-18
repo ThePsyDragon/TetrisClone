@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="Lib/jinput.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://www.lwjgl.org/javadoc/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="TetrisClone/Lib/windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="Lib/lwjgl_util.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://www.lwjgl.org/javadoc/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="TetrisClone/Lib/windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="Lib/lwjgl.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://www.lwjgl.org/javadoc/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="TetrisClone/Lib/windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="Lib/slick.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://www.lwjgl.org/javadoc/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="TetrisClone/Lib/windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
