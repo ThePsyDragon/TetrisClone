@@ -46,7 +46,7 @@ public class Tiles extends GameObject{
 	    //Private
 	      
 	  //Constructor
-	    public Tiles(int tlcorner, int trcorner, int blcorner, int brcorner, int priority, String texture) {
+	    public Tiles(Position tlcorner, Position trcorner, Position blcorner, Position brcorner, int priority, String texture) {
 	  		super(tlcorner, trcorner, blcorner, brcorner, priority, texture);
 	  	}
 	    
