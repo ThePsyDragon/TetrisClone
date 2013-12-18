@@ -30,7 +30,7 @@ public class TetrisClone {
 	double averageTPS = 0;
 	boolean debug = false;
 	boolean TPSRestrict = true;
-	//List of all Rendered Objects
+	// List of all Rendered Objects
 	List<GameObject> RendObjList = new LinkedList<GameObject>();
 
 	public static void main(String[] args) {
@@ -39,7 +39,7 @@ public class TetrisClone {
 		TetrisClone tc = new TetrisClone();
 		tc.Start();
 	}
-	
+
 	public void Start() {
 		// Start Function
 		// Initialize
@@ -61,7 +61,7 @@ public class TetrisClone {
 		long tpsTimer = System.currentTimeMillis();
 		long tickTimer = System.currentTimeMillis();
 		while (!Display.isCloseRequested()) {
-			//Check TPS
+			// Check TPS
 			if (TPSRestrict) {
 				while (System.currentTimeMillis() - tickTimer < tickLength) {
 					// Pause till tick is completed
@@ -85,9 +85,9 @@ public class TetrisClone {
 			}
 			// Update Positions
 			// Render
-			for(int i = 0; i < RendObjList.size(); i++){
+			for (int i = 0; i < RendObjList.size(); i++) {
 				RendObjList.get(i).Draw();
-				if(Tiles.RenderTiles){
+				if (Tiles.RenderTiles) {
 					Tiles.DrawAll();
 				}
 			}
