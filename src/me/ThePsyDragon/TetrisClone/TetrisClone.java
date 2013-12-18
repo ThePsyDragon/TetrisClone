@@ -2,8 +2,10 @@ package me.ThePsyDragon.TetrisClone;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import java.io.File;
 import java.util.*;
 
+import me.ThePsyDragon.Board.GameField;
 import me.ThePsyDragon.Board.Tiles;
 
 import org.lwjgl.LWJGLException;
@@ -36,8 +38,8 @@ public class TetrisClone {
 		// Variables
 		TetrisClone tc = new TetrisClone();
 		// Start Program
-		if(args.length >0){
-			if(args[0].equalsIgnoreCase("debug")){
+		if (args.length > 0) {
+			if (args[0].equalsIgnoreCase("debug")) {
 				tc.debug = true;
 			}
 		}
@@ -47,33 +49,16 @@ public class TetrisClone {
 	public void Start() {
 		// Start Function
 		// Initialize
-		try {
-			Display.setDisplayMode(new DisplayMode(720, 720));
-			Display.create();
-			Keyboard.create();
-			Mouse.create();
-		} catch (LWJGLException e) {
-			e.printStackTrace();
-			System.exit(0);
-		}
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(0, 720, 0, 720, 1, -1);
-		glMatrixMode(GL_MODELVIEW);
-		glEnable(GL11.GL_TEXTURE_2D);
+		openGLInit();
+		init();
 		// Begin Loop
-		
+		tpsTimer = System.currentTimeMillis();
 		while (!Display.isCloseRequested()) {
-			//TPS Calculations
+			// TPS Calculations
 			TPSCalc();
 			// Update Positions
 			// Render
-			for (int i = 0; i < RendObjList.size(); i++) {
-				RendObjList.get(i).Draw();
-				if (Tiles.RenderTiles) {
-					Tiles.DrawAll();
-				}
-			}
+			render();
 			// Update Screen
 			Display.update();
 		}
@@ -89,36 +74,65 @@ public class TetrisClone {
 			System.out.println(message);
 		}
 	}
-<<<<<<< HEAD
-}
-=======
-	
-	public void TPSCalc(){
+
+	public void TPSCalc() {
 		tpsTimer2 = 0;
-		tpsTimer = System.currentTimeMillis();
 		tickTimer = System.currentTimeMillis();
 		// Check TPS
-					if (TPSRestrict) {
-						while (System.currentTimeMillis() - tickTimer < tickLength) {
-							// Pause till tick is completed
-						}
-					}
-					tickTimer = System.currentTimeMillis();
-					// Calculate tps
-					tpsTimer2 = System.currentTimeMillis();
-					tpsCounter += 1;
-					this.print("TPS Counter: " + tpsCounter);
-					if (tpsTimer2 - tpsTimer > 1000) {
-						double difference = (double) (tpsTimer2 - tpsTimer);
-						this.print("" + difference);
-						currentTPS = (tpsCounter / difference) * 1000;
-						this.print("Current TPS: " + currentTPS);
-						tpsCounter = 0;
-						totalTPSCounter += 1;
-						averageTPS = ((averageTPS * (totalTPSCounter - 1)) + currentTPS)
-								/ totalTPSCounter;
-						tpsTimer = System.currentTimeMillis();
-					}
+		if (TPSRestrict) {
+			while (System.currentTimeMillis() - tickTimer < tickLength) {
+				// Pause till tick is completed
+			}
+		}
+		tickTimer = System.currentTimeMillis();
+		// Calculate tps
+		tpsCounter += 1;
+		this.print("TPS Counter: " + tpsCounter);
+		tpsTimer2 = System.currentTimeMillis();
+		if (tpsTimer2 - tpsTimer > 1000) {
+			double difference = (double) (tpsTimer2 - tpsTimer);
+			this.print("" + difference);
+			currentTPS = (tpsCounter / difference) * 1000;
+			this.print("Current TPS: " + currentTPS);
+			tpsCounter = 0;
+			totalTPSCounter += 1;
+			averageTPS = ((averageTPS * (totalTPSCounter - 1)) + currentTPS)
+					/ totalTPSCounter;
+			tpsTimer = System.currentTimeMillis();
+		}
+	}
+	
+	public void openGLInit(){
+		try {
+			Display.setDisplayMode(new DisplayMode(720, 720));
+			Display.create();
+			Keyboard.create();
+			Mouse.create();
+		} catch (LWJGLException e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0, 720, 0, 720, 1, -1);
+		glMatrixMode(GL_MODELVIEW);
+		glEnable(GL11.GL_TEXTURE_2D);
+	}
+	
+	public void render(){
+		for (int i = 0; i < RendObjList.size(); i++) {
+			GameObject.BoundTexture = RendObjList.get(i).getTexture();
+			RendObjList.get(i).Draw();
+			System.out.println("Debug: Called Draw");
+			
+		}
+		if (Tiles.RenderTiles) {
+			Tiles.DrawAll();
+		}
+	}
+	
+	public void init(){
+		GameObject.AbsoluteFilePath = new File("").getAbsolutePath();
+		RendObjList.add(new GameField());
 	}
 }
->>>>>>> 618c209402d1e883421577637ccf2d25b3713af0

@@ -16,12 +16,11 @@ Description:
     Functions
       - getType()
  */
+@SuppressWarnings("unused")
 public class Tiles extends GameObject{
 		//Global Variables
 	  //Static
 	    //Public
-	      //Array of all Tiles; X,Y
-	      public static Tiles[][] Tiles = new Tiles[10][20];
 	      //Enumeration of Tile Types
 	      public static int Empty = 1;
 	      public static int OBlock = 2;
@@ -54,7 +53,7 @@ public class Tiles extends GameObject{
 	    public static void DrawAll(){
 	    	for(int i = 0; i<10;i++){
 	    		for(int k = 0; k<20;k++){
-	    			Tiles[i][k].Draw();
+	    			GameField.Tiles[i][k].Draw();
 	    		}
 	    	}
 	    }
