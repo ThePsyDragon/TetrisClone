@@ -23,6 +23,7 @@ public class TetrisClone {
 	// Debug
 	int tickLength = 50;
 	int tpsCounter = 0;
+	int fps = 60;
 	long totalTPSCounter = 0;
 	long tpsTimer = 0;
 	long tpsTimer2 = 0;
@@ -60,6 +61,7 @@ public class TetrisClone {
 			// Render
 			render();
 			// Update Screen
+			Display.sync(fps);
 			Display.update();
 		}
 		// Clean up
@@ -114,12 +116,13 @@ public class TetrisClone {
 		}
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0, 720, 0, 720, 1, -1);
+		glOrtho(0, 720, 720, 0, 1, -1);
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL11.GL_TEXTURE_2D);
 	}
 
 	public void render() {
+		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		for (int i = 0; i < RendObjList.size(); i++) {
 			if (GameObject.BoundTexture == null || !GameObject.BoundTexture
 					.equals(RendObjList.get(i).getTexture())) {
