@@ -1,6 +1,7 @@
 package me.ThePsyDragon.TetrisClone;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import me.ThePsyDragon.Board.Position;
@@ -46,7 +47,6 @@ public class GameObject {
 	private Position BLCorner;
 	private Position BRCorner;
 	// Object Texture
-
 	private Texture Texture;
 	// Priority
 	private int Priority;
@@ -61,7 +61,7 @@ public class GameObject {
 		Priority = priority;
 		try {
 			Texture = TextureLoader.getTexture("PNG",
-					ResourceLoader.getResourceAsStream(AbsoluteFilePath + File.separator + "res" + File.separator + texture + ".png"));
+					new FileInputStream(new File(AbsoluteFilePath + File.separator + "res" + File.separator + texture + ".png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(0);
@@ -71,7 +71,9 @@ public class GameObject {
 	// Draw
 	public void Draw() {
 		if (!BoundTexture.equals(Texture)) {
-			GL11.glBindTexture(GL11.GL_TEXTURE_2D, Texture.getTextureID());
+			BoundTexture.release();
+			BoundTexture = Texture;
+			BoundTexture.bind();
 		}
 		GL11.glBegin(GL11.GL_QUADS);
 		//Top Left

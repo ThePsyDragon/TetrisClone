@@ -61,14 +61,15 @@ public class TetrisClone {
 			// Render
 			render();
 			// Update Screen
-			Display.sync(fps);
 			Display.update();
+			Display.sync(fps);
 		}
 		// Clean up
 		// Debug Info
 		System.out.println("Average TPS: " + averageTPS);
 		this.print("Total TPS Counter: " + totalTPSCounter);
 		// Exit
+		Close();
 	}
 
 	public void print(String message) {
@@ -122,11 +123,12 @@ public class TetrisClone {
 	}
 
 	public void render() {
-		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT);
 		for (int i = 0; i < RendObjList.size(); i++) {
 			if (GameObject.BoundTexture == null || !GameObject.BoundTexture
 					.equals(RendObjList.get(i).getTexture())) {
 				GameObject.BoundTexture = RendObjList.get(i).getTexture();
+				GameObject.BoundTexture.bind();
 			}
 			RendObjList.get(i).Draw();
 			System.out.println("Debug: Called Draw");
@@ -139,5 +141,11 @@ public class TetrisClone {
 	public void init() {
 		GameObject.AbsoluteFilePath = new File("").getAbsolutePath();
 		RendObjList.add(new GameField());
+	}
+	
+	public void Close(){
+		Display.destroy();
+		Keyboard.destroy();
+		Mouse.destroy();
 	}
 }
