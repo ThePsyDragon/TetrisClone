@@ -3,12 +3,10 @@ package me.ThePsyDragon.TetrisClone;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-
 import me.ThePsyDragon.Board.Position;
-
-import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.opengl.*;
-import org.newdawn.slick.util.ResourceLoader;
+import static org.lwjgl.opengl.GL11.*;
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
 
 /*
  * Description:
@@ -59,36 +57,27 @@ public class GameObject {
 		BRCorner = brcorner;
 		BLCorner = blcorner;
 		Priority = priority;
-		try {
-			Texture = TextureLoader.getTexture("PNG",
-					new FileInputStream(new File(AbsoluteFilePath + File.separator + "res" + File.separator + texture + ".png")));
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(0);
-		}
+		setTexture(texture);
 	}
 
 	// Draw
 	public void Draw() {
-		if (!BoundTexture.equals(Texture)) {
-			BoundTexture.release();
-			BoundTexture = Texture;
-			BoundTexture.bind();
-		}
-		GL11.glBegin(GL11.GL_QUADS);
-		//Top Left
-		GL11.glTexCoord2f(0, 0);
-		GL11.glVertex2i(TLCorner.getX(), TLCorner.getY());
-		//Top Right
-		GL11.glTexCoord2f(1, 0);
-		GL11.glVertex2i(TRCorner.getX(), TRCorner.getY());
-		//Bottom Right
-		GL11.glTexCoord2f(1,1);
-		GL11.glVertex2i(BRCorner.getX(), BRCorner.getY());
-		//Bottom Left
-		GL11.glTexCoord2f(0, 1);
-		GL11.glVertex2i(BLCorner.getX(), BLCorner.getY());
-		GL11.glEnd();
+		Texture.bind();
+		glBegin(GL_QUADS);
+		// Top Left
+		glTexCoord2f(0, 0);
+		glVertex2i(TLCorner.getX(), TLCorner.getY());
+		// Top Right
+		glTexCoord2f(1, 0);
+		glVertex2i(TRCorner.getX(), TRCorner.getY());
+		// Bottom Right
+		glTexCoord2f(1, 1);
+		glVertex2i(BRCorner.getX(), BRCorner.getY());
+		// Bottom Left
+		glTexCoord2f(0, 1);
+		glVertex2i(BLCorner.getX(), BLCorner.getY());
+		glEnd();
+		Texture.release();
 	}
 
 	// getPriority
@@ -143,8 +132,9 @@ public class GameObject {
 	// setTextures
 	public void setTexture(String texture) {
 		try {
-			Texture = TextureLoader.getTexture("PNG",
-					ResourceLoader.getResourceAsStream(AbsoluteFilePath + File.separator + "res" + File.separator + texture + ".png"));
+			Texture = TextureLoader.getTexture("PNG", new FileInputStream(
+					new File(AbsoluteFilePath + File.separator + "res"
+							+ File.separator + texture + ".png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

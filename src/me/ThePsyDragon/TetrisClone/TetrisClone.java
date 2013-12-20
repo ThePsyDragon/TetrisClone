@@ -125,11 +125,6 @@ public class TetrisClone {
 	public void render() {
 		glClear(GL_COLOR_BUFFER_BIT);
 		for (int i = 0; i < RendObjList.size(); i++) {
-			if (GameObject.BoundTexture == null || !GameObject.BoundTexture
-					.equals(RendObjList.get(i).getTexture())) {
-				GameObject.BoundTexture = RendObjList.get(i).getTexture();
-				GameObject.BoundTexture.bind();
-			}
 			RendObjList.get(i).Draw();
 			System.out.println("Debug: Called Draw");
 		}
