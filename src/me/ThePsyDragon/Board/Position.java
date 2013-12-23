@@ -15,13 +15,25 @@ public class Position {
 	private int Y = 0;
 	@SuppressWarnings("unused")
 	public Position(int x, int y){
-		int X = x;
-		int Y = y;
+		X = x;
+		Y = y;
 	}
 	public int getX(){
 		return X;
 	}
 	public int getY(){
 		return Y;
+	}
+	public void setX(int x){
+		X = x;
+		if(X == 0){
+			X = 1;
+		}
+	}
+	public void setY(int y){
+		Y = y;
+		if(Y == 0){
+			Y = 1;
+		}
 	}
 }

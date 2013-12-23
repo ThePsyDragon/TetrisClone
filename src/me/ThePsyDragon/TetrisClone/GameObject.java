@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import me.ThePsyDragon.Board.Position;
 import static org.lwjgl.opengl.GL11.*;
+
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
@@ -137,6 +139,30 @@ public class GameObject {
 							+ File.separator + texture + ".png")));
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	// Size Adjustment
+	public void AdjustToWindow() {
+		if (Display.getHeight() != 0 && Display.getWidth() != 0) {
+			double WModifier = (double) Display.getWidth() / TetrisClone.WWidth;
+			double HModifier = (double) Display.getHeight()
+					/ TetrisClone.WHeight;
+			this.BLCorner.setX((int) (BLCorner.getX() * WModifier));
+			this.BLCorner.setY((int) (BLCorner.getY() * HModifier));
+			this.BRCorner.setX((int) (BRCorner.getX() * WModifier));
+			this.BRCorner.setY((int) (BRCorner.getY() * HModifier));
+			this.TLCorner.setX((int) (TLCorner.getX() * WModifier));
+			this.TLCorner.setY((int) (TLCorner.getY() * HModifier));
+			this.TRCorner.setX((int) (TRCorner.getX() * WModifier));
+			this.TRCorner.setY((int) (TRCorner.getY() * HModifier));
+			TetrisClone.WWidth = Display.getWidth();
+			TetrisClone.WHeight = Display.getHeight();
+			System.out.println("Debug: Display Height: " + TetrisClone.WHeight);
+			System.out.println("Debug: TOP Y COORDS: " + TLCorner.getY() + " "
+					+ TRCorner.getY());
+			System.out.println("Debug: BOT Y COORDS: " + BLCorner.getY() + " "
+					+ BRCorner.getY());
 		}
 	}
 }

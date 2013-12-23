@@ -24,13 +24,15 @@ public class TetrisClone {
 	int tickLength = 50;
 	int tpsCounter = 0;
 	int fps = 60;
+	public static int WHeight;
+	public static int WWidth;
 	long totalTPSCounter = 0;
 	long tpsTimer = 0;
 	long tpsTimer2 = 0;
 	long tickTimer = 0;
 	double currentTPS = 0;
 	double averageTPS = 0;
-	boolean debug = true;
+	boolean debug = false;
 	boolean TPSRestrict = true;
 	// List of all Rendered Objects
 	List<GameObject> RendObjList = new LinkedList<GameObject>();
@@ -58,10 +60,12 @@ public class TetrisClone {
 			// TPS Calculations
 			TPSCalc();
 			// Update Positions
+			ButtonPresses();
 			// Render
 			render();
 			// Update Screen
 			Display.update();
+			AdjustWindow();
 			Display.sync(fps);
 		}
 		// Clean up
@@ -107,7 +111,9 @@ public class TetrisClone {
 
 	public void openGLInit() {
 		try {
-			Display.setDisplayMode(new DisplayMode(720, 720));
+			Display.setDisplayMode(new DisplayMode(640, 480));
+			Display.setTitle("Tetris");
+			Display.setResizable(true);
 			Display.create();
 			Keyboard.create();
 			Mouse.create();
@@ -115,18 +121,19 @@ public class TetrisClone {
 			e.printStackTrace();
 			System.exit(0);
 		}
+		WWidth = Display.getWidth();
+		WHeight = Display.getHeight();
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0, 720, 720, 0, 1, -1);
+		glOrtho(0, 640, 0, 480, 1, -1);
 		glMatrixMode(GL_MODELVIEW);
-		glEnable(GL11.GL_TEXTURE_2D);
+		glEnable(GL_TEXTURE_2D);
 	}
 
 	public void render() {
 		glClear(GL_COLOR_BUFFER_BIT);
 		for (int i = 0; i < RendObjList.size(); i++) {
 			RendObjList.get(i).Draw();
-			System.out.println("Debug: Called Draw");
 		}
 		if (Tiles.RenderTiles) {
 			Tiles.DrawAll();
@@ -142,5 +149,24 @@ public class TetrisClone {
 		Display.destroy();
 		Keyboard.destroy();
 		Mouse.destroy();
+	}
+	
+	public void AdjustWindow(){
+		if(WWidth != Display.getWidth() || WHeight != Display.getHeight()){
+			for(int i = 0; i<RendObjList.size();i++){
+				RendObjList.get(i).AdjustToWindow();
+			}
+		}
+	}
+	
+	public void ButtonPresses(){
+		if(Keyboard.isKeyDown(Keyboard.KEY_R)){
+			Reset();
+		}
+	}
+	
+	public void Reset(){
+		Close();
+		openGLInit();
 	}
 }
