@@ -13,7 +13,6 @@ public class Position {
 	//Global Variables
 	private int X = 0;
 	private int Y = 0;
-	@SuppressWarnings("unused")
 	public Position(int x, int y){
 		X = x;
 		Y = y;

@@ -79,7 +79,6 @@ public class GameObject {
 		glTexCoord2f(0, 1);
 		glVertex2i(BLCorner.getX(), BLCorner.getY());
 		glEnd();
-		Texture.release();
 	}
 
 	// getPriority

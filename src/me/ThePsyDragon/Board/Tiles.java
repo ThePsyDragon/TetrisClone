@@ -21,6 +21,8 @@ public class Tiles extends GameObject{
 		//Global Variables
 	  //Static
 	    //Public
+		  //Length of tile size
+		  public static int TileSize = 27;
 	      //Enumeration of Tile Types
 	      public static int Empty = 1;
 	      public static int OBlock = 2;
