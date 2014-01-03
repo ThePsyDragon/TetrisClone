@@ -1,7 +1,6 @@
 package me.ThePsyDragon.Board;
 
 import java.io.File;
-
 import me.ThePsyDragon.TetrisClone.GameObject;
 
 public class GameField extends GameObject{
@@ -19,5 +18,4 @@ public class GameField extends GameObject{
     public GameField() {
 		super(TLCorner, TRCorner, BLCorner, BRCorner, Medium_Priority, Texture);
 	}
-	
 }

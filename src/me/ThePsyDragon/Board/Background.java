@@ -1,7 +1,6 @@
 package me.ThePsyDragon.Board;
 
 import java.io.File;
-
 import me.ThePsyDragon.TetrisClone.GameObject;
 
 public class Background extends GameObject{
