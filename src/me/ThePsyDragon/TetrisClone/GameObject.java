@@ -157,11 +157,6 @@ public class GameObject {
 			this.TRCorner.setY((int) (TRCorner.getY() * HModifier));
 			TetrisClone.WWidth = Display.getWidth();
 			TetrisClone.WHeight = Display.getHeight();
-			System.out.println("Debug: Display Height: " + TetrisClone.WHeight);
-			System.out.println("Debug: TOP Y COORDS: " + TLCorner.getY() + " "
-					+ TRCorner.getY());
-			System.out.println("Debug: BOT Y COORDS: " + BLCorner.getY() + " "
-					+ BRCorner.getY());
 		}
 	}
 }
